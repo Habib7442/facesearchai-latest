@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export async function middleware(request: NextRequest) {
-  const publicPaths = ['/sign-in', '/sign-up', '/', '/about', '/pricing']
+  const publicPaths = ['/sign-in', '/sign-up', '/', '/about', '/pricing', '/search']
   const isPublicPath = publicPaths.some(path => 
     request.nextUrl.pathname.startsWith(path)
   )

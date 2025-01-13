@@ -1,81 +1,46 @@
-'use client'
+import { Suspense } from "react";
+import { InfiniteMovingCards } from "../ui/infinite-moving-cards";
+import { LoadingSpinner } from "../ui/loading-spinner";
 
-import { useState, useEffect } from 'react'
-import { InfiniteMovingCards } from "../ui/infinite-moving-cards"
-import { LoadingSpinner } from "../ui/loading-spinner"
+async function getFeedbackData() {
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+    const res = await fetch(`${baseUrl}/api/feedback/all`, {
+      cache: 'no-store',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-interface Feedback {
-  user_name: string
-  content: string
-  rating: number
-  submitted_at: string
-}
-
-interface FeedbackResponse {
-  feedback: Feedback[]
-}
-
-function TestimonialList() {
-  const [data, setData] = useState<FeedbackResponse | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-
-  useEffect(() => {
-    const fetchFeedback = async () => {
-      try {
-        const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
-        const res = await fetch(`${baseUrl}/api/feedback/all`, {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-
-        if (!res.ok) {
-          throw new Error(`Failed to fetch feedback: ${res.status}`)
-        }
-
-        const jsonData = await res.json()
-        setData(jsonData)
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load testimonials')
-      } finally {
-        setIsLoading(false)
-      }
+    if (!res.ok) {
+      throw new Error(`Failed to fetch feedback: ${res.status}`);
     }
 
-    fetchFeedback()
-  }, [])
-
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center min-h-[200px]">
-        <LoadingSpinner />
-      </div>
-    )
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching feedback:', error);
+    return { feedback: [] };
   }
+}
 
-  if (error) {
-    return (
-      <div className="text-center text-muted-foreground">
-        Error loading testimonials
-      </div>
-    )
-  }
+async function TestimonialList() {
+  const data = await getFeedbackData();
 
-  if (!data?.feedback?.length) {
+  if (!data?.feedback) {
     return (
       <div className="text-center text-muted-foreground">
         No testimonials available
       </div>
-    )
+    );
   }
 
-  const transformedTestimonials = data.feedback.map((feedback: Feedback, index: number) => ({
+  const transformedTestimonials = data.feedback.map((feedback, index) => ({
     id: `${feedback.user_name}-${feedback.submitted_at}-${index}`,
     quote: feedback.content,
     name: feedback.user_name,
     title: `${feedback.rating} ★ Rating`,
-  }))
+  }));
 
   const finalTestimonials =
     transformedTestimonials.length < 5
@@ -86,19 +51,35 @@ function TestimonialList() {
             id: `${t.id}-duplicate`,
           })),
         ]
-      : transformedTestimonials
+      : transformedTestimonials;
 
   return (
     <div className="rounded-md flex flex-col antialiased items-center justify-center relative overflow-hidden">
-      <InfiniteMovingCards
-        items={finalTestimonials}
-        direction="right"
-        speed="slow"
-      />
+      {finalTestimonials.length > 0 ? (
+        <InfiniteMovingCards
+          items={finalTestimonials}
+          direction="right"
+          speed="slow"
+        />
+      ) : (
+        <div className="text-center text-muted-foreground">
+          No testimonials available yet
+        </div>
+      )}
     </div>
-  )
+  );
 }
 
 export default function TestimonialContent() {
-  return <TestimonialList />
+  return (
+    <Suspense
+      fallback={
+        <div className="flex justify-center items-center min-h-[200px]">
+          <LoadingSpinner />
+        </div>
+      }
+    >
+      <TestimonialList />
+    </Suspense>
+  );
 }

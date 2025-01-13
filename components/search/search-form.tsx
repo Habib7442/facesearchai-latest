@@ -27,6 +27,7 @@ export function SearchForm({ onSearchComplete }: SearchFormProps) {
   const [file, setFile] = useState<File | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
   const [zoom, setZoom] = useState(1)
+  const [isSearching, setIsSearching] = useState(false)
   const imageRef = useRef<HTMLDivElement>(null)
   const formRef = useRef<HTMLFormElement>(null)
   const uploadedImage = useSelector((state: RootState) => state.uploadedImage.image)
@@ -53,39 +54,64 @@ export function SearchForm({ onSearchComplete }: SearchFormProps) {
 
   const handlePublicSearch = async (file: File) => {
     try {
-      const reader = new FileReader()
-      reader.onload = async () => {
-        try {
+      // Read file as base64
+      const base64 = await new Promise<string>((resolve) => {
+        const reader = new FileReader()
+        reader.onloadend = () => {
           const base64String = reader.result as string
-          
-          const response = await fetch('/api/public-search', {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              image: base64String,
-              adult_filter: true
-            })
-          })
-
-          if (!response.ok) {
-            const errorData = await response.json()
-            throw new Error(errorData.error || "Search failed")
-          }
-
-          const data = await response.json()
-          dispatch(setResults(data.results))
-          onSearchComplete(data)
-        } catch (error: any) {
-          console.error("Public search error:", error)
-          dispatch(setError(error.message || "Failed to perform search"))
-          toast.error(error.message || "Failed to perform search. Please try again.")
+          // Get only the base64 data without the data:image prefix
+          const base64Data = base64String.split(',')[1]
+          resolve(base64Data)
         }
+        reader.readAsDataURL(file)
+      })
+
+      const response = await fetch('/api/public-search', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          image: base64,
+          adult_filter: true
+        })
+      })
+
+      if (!response.ok) {
+        let errorMessage = 'Search failed'
+        try {
+          const errorData = await response.json()
+          errorMessage = errorData.error || errorMessage
+        } catch {
+          errorMessage = response.statusText || errorMessage
+        }
+        throw new Error(errorMessage)
       }
 
-      reader.readAsDataURL(file)
+      const data = await response.json()
+      
+      // Validate the response structure
+      if (!data || typeof data !== 'object') {
+        throw new Error("Invalid response format")
+      }
+
+      // Ensure results array exists
+      const results = Array.isArray(data.results) ? data.results : []
+      
+      const formattedData = {
+        results,
+        is_premium: false,
+        remaining_searches: data.remaining_searches || 0,
+        search_id: data.search_id || Date.now().toString(),
+      }
+
+      dispatch(setResults(formattedData.results))
+      onSearchComplete(formattedData)
+      return formattedData
     } catch (error: any) {
+      console.error("Public search error:", error)
+      dispatch(setError(error.message || "Failed to perform search"))
+      toast.error(error.message || "Failed to perform search. Please try again.")
       throw error
     }
   }
@@ -112,13 +138,33 @@ export function SearchForm({ onSearchComplete }: SearchFormProps) {
       })
 
       if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.error || "Search failed")
+        let errorMessage = 'Search failed'
+        try {
+          const errorData = await response.json()
+          errorMessage = errorData.error || errorMessage
+        } catch {
+          // If JSON parsing fails, use status text
+          errorMessage = response.statusText || errorMessage
+        }
+        throw new Error(errorMessage)
       }
 
-      const data = await response.json()
+      let data
+      try {
+        data = await response.json()
+      } catch (error) {
+        console.error("Error parsing response:", error)
+        throw new Error("Invalid response from server")
+      }
+
+      // Validate and format the response
+      if (!data || !data.results) {
+        throw new Error("Invalid response format")
+      }
+
       dispatch(setResults(data.results))
       onSearchComplete(data)
+      return data
     } catch (error: any) {
       console.error("Premium search error:", error)
       dispatch(setError(error.message || "Failed to perform search"))
@@ -131,21 +177,26 @@ export function SearchForm({ onSearchComplete }: SearchFormProps) {
     e.preventDefault()
     if (!file) return
 
+    setIsSearching(true)
     dispatch(setLoading(true))
+
     try {
+      let searchData
       if (user?.subscription?.premium_status) {
-        await handlePremiumSearch(file)
+        searchData = await handlePremiumSearch(file)
       } else {
-        await handlePublicSearch(file)
+        searchData = await handlePublicSearch(file)
       }
       
       // Show remaining searches for free users
-      if (!user?.subscription?.premium_status) {
-        toast.info(`Searches remaining: ${data?.remaining_searches || 0}`)
+      if (!user?.subscription?.premium_status && searchData?.remaining_searches !== undefined) {
+        toast.info(`Searches remaining: ${searchData.remaining_searches}`)
       }
     } catch (error: any) {
       console.error("Search error:", error)
+      toast.error("Search failed. Please try again.")
     } finally {
+      setIsSearching(false)
       dispatch(setLoading(false))
     }
   }
@@ -197,10 +248,17 @@ export function SearchForm({ onSearchComplete }: SearchFormProps) {
               <div className="p-4 border-t bg-muted/30">
                 <Button 
                   type="submit" 
-                  disabled={!file || isLoading}
+                  disabled={!file || isSearching}
                   className="w-full"
                 >
-                  {isLoading ? "Searching..." : "Search"}
+                  {isSearching ? (
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                      <span>Searching...</span>
+                    </div>
+                  ) : (
+                    "Search"
+                  )}
                 </Button>
               </div>
             </form>

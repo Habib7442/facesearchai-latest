@@ -76,7 +76,7 @@ export default function Home() {
         </div>
 
         {/* Footer */}
-        <footer className="w-full container mx-auto bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+        <footer className="w-full container mx-auto">
           <Suspense fallback={<SectionLoading />}>
             <FooterSection />
           </Suspense>

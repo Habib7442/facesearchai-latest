@@ -50,16 +50,6 @@ export async function GET(request: NextRequest) {
 
     const { access_token } = await backendResponse.json();
 
-    // Set the auth cookie
-    const cookieStore = cookies();
-    cookieStore.set('auth_token', access_token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      maxAge: 30 * 60, // 30 minutes
-      path: '/',
-    });
-
     // Fetch user profile from your backend
     const profileResponse = await fetch(`${process.env.API_URL}/profile`, {
       headers: {
@@ -73,16 +63,19 @@ export async function GET(request: NextRequest) {
 
     const profileData = await profileResponse.json();
 
-    // Create response with profile data to be saved in localStorage
+    // Create response with profile data
     const response = NextResponse.redirect(
-      `${process.env.NEXT_PUBLIC_APP_URL}/dashboard`
+      `${process.env.NEXT_PUBLIC_APP_URL}/dashboard?profile=${encodeURIComponent(JSON.stringify(profileData))}`
     );
 
-    // Add profile data to response headers to be processed by client
-    response.headers.set(
-      'Set-Cookie',
-      `user_profile=${JSON.stringify(profileData)}; Path=/; HttpOnly=false; SameSite=Lax`
-    );
+    // Set the auth cookie
+    response.cookies.set('auth_token', access_token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 30 * 60, // 30 minutes
+      path: '/',
+    });
 
     return response;
 

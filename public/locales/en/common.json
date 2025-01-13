@@ -448,6 +448,8 @@
     }
   },
   "auth": {
+    "welcomeBack": "Welcome back",
+    "enterEmail": "Enter your email to sign in to your account",
     "signIn": {
       "title": "Welcome Back",
       "subtitle": "Sign in to your account",
@@ -460,7 +462,9 @@
       "email": "Email",
       "emailPlaceholder": "Enter your email",
       "password": "Password",
-      "passwordPlaceholder": "Enter your password"
+      "passwordPlaceholder": "Enter your password",
+      "forgotPassword": "Forgot password?",
+      "rememberMe": "Remember me"
     },
     "signUp": {
       "title": "Create Account",
@@ -471,14 +475,31 @@
       "fullNamePlaceholder": "Enter your full name",
       "email": "Email",
       "emailPlaceholder": "Enter your email",
-      "password": "Password", 
+      "password": "Password",
       "passwordPlaceholder": "Create a password",
       "showPassword": "Show password",
       "hidePassword": "Hide password",
       "creatingAccount": "Creating account...",
       "createAccount": "Create Account",
       "haveAccount": "Already have an account?",
-      "signIn": "Sign in"
+      "signIn": "Sign in",
+      "termsAndConditions": "By creating an account, you agree to our Terms and Conditions"
+    },
+    "errors": {
+      "invalidEmail": "Please enter a valid email",
+      "invalidPassword": "Password must be at least 8 characters",
+      "emailRequired": "Email is required",
+      "passwordRequired": "Password is required",
+      "nameRequired": "Name is required",
+      "emailExists": "Email already exists",
+      "invalidCredentials": "Invalid email or password",
+      "accountLocked": "Account is locked. Please try again later",
+      "serverError": "Something went wrong. Please try again"
+    },
+    "success": {
+      "signIn": "Successfully signed in",
+      "signUp": "Account created successfully",
+      "signOut": "Successfully signed out"
     }
   },
   "contact": {

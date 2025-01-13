@@ -63,6 +63,12 @@ export function SearchResults({ results, isPremium, remainingCredits, search_id 
   const [page, setPage] = useState(1)
   const [groupedView, setGroupedView] = useState(false)
   
+  // Add a memo to count adult content
+  const adultContentCount = useMemo(() => 
+    results.filter(result => result.adultContent).length,
+    [results]
+  )
+
   // Update the button text to match the state
   const adultContentButton = showAdultContent ? (
     <>
@@ -80,7 +86,7 @@ export function SearchResults({ results, isPremium, remainingCredits, search_id 
   const filteredResults = useMemo(() => 
     results.filter(result => 
       !failedImages.has(result.imageUrl) && 
-      (!result.adultContent || showAdultContent)
+      (showAdultContent || !result.adultContent)
     ),
     [results, failedImages, showAdultContent]
   )
@@ -187,7 +193,17 @@ export function SearchResults({ results, isPremium, remainingCredits, search_id 
             onClick={() => setShowAdultContent(!showAdultContent)}
             className="flex items-center gap-2"
           >
-            {adultContentButton}
+            {showAdultContent ? (
+              <>
+                <EyeOff className="w-4 h-4" />
+                <span>Hide Adult Content</span>
+              </>
+            ) : (
+              <>
+                <Eye className="w-4 h-4" />
+                <span>Show Adult Content</span>
+              </>
+            )}
           </Button>
 
           {/* Add grouping toggle button */}
@@ -206,7 +222,12 @@ export function SearchResults({ results, isPremium, remainingCredits, search_id 
         </div>
 
         <p className="text-sm text-muted-foreground text-center">
-          Showing {displayedResults.length} of {displayResults.length} results
+          Showing {filteredResults.length} of {results.length} results
+          {!showAdultContent && adultContentCount > 0 && (
+            <span className="text-xs ml-2">
+              ({adultContentCount} adult content hidden)
+            </span>
+          )}
         </p>
       </div>
 

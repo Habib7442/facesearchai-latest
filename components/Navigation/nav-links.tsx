@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, MessageSquare, Search, History, User } from "lucide-react";
+import { Home, Search, History, User } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
@@ -17,12 +17,28 @@ export function NavLinks() {
 
   useEffect(() => {
     setMounted(true);
-    // Fetch user from sessionStorage
     const userProfile = sessionStorage.getProfile() as UserData | null;
     setUser(userProfile);
   }, []);
 
-  const links = user?.email ? [
+  const links = !user?.email ? [
+    { 
+      href: "/", 
+      label: t('nav.home'), 
+      icon: Home,
+      bgColor: "hover:bg-blue-50 dark:hover:bg-blue-950",
+      activeColor: "bg-blue-100 dark:bg-blue-900",
+      textColor: "text-slate-900 dark:text-gray-100"
+    },
+    { 
+      href: "/search", 
+      label: t('nav.search'), 
+      icon: Search,
+      bgColor: "hover:bg-purple-50 dark:hover:bg-purple-950",
+      activeColor: "bg-purple-100 dark:bg-purple-900",
+      textColor: "text-purple-500 dark:text-gray-100"
+    }
+  ] : [
     { 
       href: "/dashboard", 
       label: t('nav.dashboard'), 
@@ -54,24 +70,7 @@ export function NavLinks() {
       bgColor: "hover:bg-red-50 dark:hover:bg-red-950",
       activeColor: "bg-red-100 dark:bg-red-900",
       textColor: "text-red-500 dark:text-gray-100"
-    },
-  ] : [
-    { 
-      href: "/", 
-      label: t('nav.home'), 
-      icon: Home,
-      bgColor: "hover:bg-blue-50 dark:hover:bg-blue-950",
-      activeColor: "bg-blue-100 dark:bg-blue-900",
-      textColor: "text-slate-900 dark:text-gray-100"
-    },
-    { 
-      href: "/search", 
-      label: t('nav.search'), 
-      icon: Search,
-      bgColor: "hover:bg-purple-50 dark:hover:bg-purple-950",
-      activeColor: "bg-purple-100 dark:bg-purple-900",
-      textColor: "text-purple-500 dark:text-gray-100"
-    },
+    }
   ];
 
   if (!mounted) return null;
@@ -114,11 +113,6 @@ export function NavLinks() {
               >
                 {link.label}
               </span>
-
-              <div className={cn(
-                "absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200",
-                isActive ? "bg-gradient-to-r from-transparent via-white/5 to-transparent" : ""
-              )} />
             </div>
           </Link>
         );

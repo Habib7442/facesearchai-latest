@@ -1,34 +1,65 @@
 "use client";
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState, Suspense } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { sessionStorage } from '@/lib/utils/session';
+import { LoadingSpinner } from '@/components/ui/loading-spinner';
 
-export function GoogleAuthHandler() {
+// Separate component that uses useSearchParams
+function AuthHandler() {
+  const searchParams = useSearchParams();
   const router = useRouter();
+  const [isAuthenticating, setIsAuthenticating] = useState(true);
+  const profileParam = searchParams.get('profile');
 
   useEffect(() => {
-    // Get profile data from cookie
-    const cookies = document.cookie.split(';');
-    const profileCookie = cookies.find(cookie => cookie.trim().startsWith('user_profile='));
-    
-    if (profileCookie) {
+    if (profileParam) {
       try {
-        // Parse and store profile data
-        const profileData = JSON.parse(decodeURIComponent(profileCookie.split('=')[1]));
+        const profileData = JSON.parse(decodeURIComponent(profileParam));
         sessionStorage.setProfile(profileData);
         
-        // Clean up the cookie
-        document.cookie = 'user_profile=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        // Clear URL parameters
+        const newUrl = window.location.pathname;
+        window.history.replaceState({}, '', newUrl);
         
-        // Redirect to dashboard
         router.push('/dashboard');
       } catch (error) {
-        console.error('Error processing Google auth profile:', error);
-        router.push('/login?error=ProfileProcessingFailed');
+        console.error('Error storing profile:', error);
+        router.push('/sign-in?error=auth_failed');
       }
     }
-  }, [router]);
+  }, [profileParam, router]);
 
-  return null;
+  if (!profileParam) return null;
+
+  return (
+    <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50">
+      <div className="min-h-screen flex items-center justify-center">
+        <LoadingSpinner />
+        <span className="ml-2 text-sm text-muted-foreground">
+          Authenticating...
+        </span>
+      </div>
+    </div>
+  );
+}
+
+// Main component that wraps AuthHandler in Suspense
+export function GoogleAuthHandler() {
+  return (
+    <Suspense 
+      fallback={
+        <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50">
+          <div className="min-h-screen flex items-center justify-center">
+            <LoadingSpinner />
+            <span className="ml-2 text-sm text-muted-foreground">
+              Loading...
+            </span>
+          </div>
+        </div>
+      }
+    >
+      <AuthHandler />
+    </Suspense>
+  );
 } 

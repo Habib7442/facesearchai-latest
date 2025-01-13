@@ -10,27 +10,27 @@ interface DashboardLayoutProps {
 }
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
-  const router = useRouter()
+  // const router = useRouter()
 
-  useEffect(() => {
-    const checkAuth = () => {
-      const userProfile = sessionStorage.getProfile() as UserData | null
+  // useEffect(() => {
+  //   const checkAuth = () => {
+  //     const userProfile = sessionStorage.getProfile() as UserData | null
 
-      if (!userProfile?.email) {
-        console.log('No user profile found, redirecting to sign-in')
-        router.push('/sign-in')
-        return
-      }
-    }
+  //     if (!userProfile?.email) {
+  //       console.log('No user profile found, redirecting to sign-in')
+  //       router.push('/sign-in')
+  //       return
+  //     }
+  //   }
 
-    checkAuth()
-  }, [router])
+  //   checkAuth()
+  // }, [router])
 
-  // You might want to add a loading state while checking auth
-  const userProfile = sessionStorage.getProfile()
-  if (!userProfile?.email) {
-    return null // or return a loading spinner
-  }
+  // // You might want to add a loading state while checking auth
+  // const userProfile = sessionStorage.getProfile()
+  // if (!userProfile?.email) {
+  //   return null // or return a loading spinner
+  // }
 
   return (
     <div className="min-h-screen bg-background">
