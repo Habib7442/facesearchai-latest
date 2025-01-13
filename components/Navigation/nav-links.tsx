@@ -7,22 +7,20 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import type { UserData } from "@/types/auth";
+import { sessionStorage } from "@/lib/utils/session";
 
-interface NavLinksProps {
-  user: UserData | null;
-}
-
-export function NavLinks({ user }: NavLinksProps) {
+export function NavLinks() {
   const [mounted, setMounted] = useState(false);
+  const [user, setUser] = useState<UserData | null>(null);
   const pathname = usePathname();
   const { t } = useTranslation();
 
-  
   useEffect(() => {
     setMounted(true);
+    // Fetch user from sessionStorage
+    const userProfile = sessionStorage.getProfile() as UserData | null;
+    setUser(userProfile);
   }, []);
-
-
 
   const links = user?.email ? [
     { 
@@ -117,7 +115,6 @@ export function NavLinks({ user }: NavLinksProps) {
                 {link.label}
               </span>
 
-              {/* Subtle glow effect on hover */}
               <div className={cn(
                 "absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200",
                 isActive ? "bg-gradient-to-r from-transparent via-white/5 to-transparent" : ""

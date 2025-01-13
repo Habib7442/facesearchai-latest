@@ -4,7 +4,7 @@ import { isTokenExpired } from '@/lib/auth'
 
 const publicOnlyPaths = [
   '/sign-in',
-  '/register',
+  '/sign-up',
   // Add other public-only routes
 ]
 

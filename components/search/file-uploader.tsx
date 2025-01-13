@@ -25,17 +25,19 @@ export function FileUploader({ file, onFileSelect }: FileUploaderProps) {
   return (
     <div
       {...getRootProps()}
-      className="border-2 border-dashed rounded-lg p-8 text-center cursor-pointer hover:border-primary h-[400px]"
+      className="border-2 border-dashed rounded-lg p-8 text-center cursor-pointer hover:border-primary h-[400px] flex flex-col items-center justify-center"
     >
       <input {...getInputProps()} />
-      <Upload className="mx-auto h-12 w-12 text-muted-foreground" />
-      {file ? (
-        <p className="mt-2">{file.name}</p>
-      ) : (
-        <p className="mt-2 text-muted-foreground">
-          {isDragActive ? "Drop the image here" : "Drag & drop an image, or click to select"}
-        </p>
-      )}
+      <div className="space-y-4">
+        <Upload className="mx-auto h-12 w-12 text-muted-foreground" />
+        {file ? (
+          <p className="text-base">{file.name}</p>
+        ) : (
+          <p className="text-base text-muted-foreground">
+            {isDragActive ? "Drop the image here" : "Drag & drop an image, or click to select"}
+          </p>
+        )}
+      </div>
     </div>
   )
 } 

@@ -38,7 +38,20 @@ interface ResultCardProps {
   onSelect: (imageUrl: string) => void
   onError: (imageUrl: string) => void
   groupCount?: number
+  groupColor?: string
 }
+
+// Add color mapping for groups
+const GROUP_COLORS = [
+  "bg-blue-50 dark:bg-blue-950/50",
+  "bg-purple-50 dark:bg-purple-950/50",
+  "bg-green-50 dark:bg-green-950/50",
+  "bg-amber-50 dark:bg-amber-950/50",
+  "bg-rose-50 dark:bg-rose-950/50",
+  "bg-cyan-50 dark:bg-cyan-950/50",
+  "bg-indigo-50 dark:bg-indigo-950/50",
+  "bg-pink-50 dark:bg-pink-950/50",
+]
 
 export function SearchResults({ results, isPremium, remainingCredits, search_id }: SearchResultsProps) {
   const [selectedImages, setSelectedImages] = useState<Set<string>>(new Set())
@@ -50,11 +63,24 @@ export function SearchResults({ results, isPremium, remainingCredits, search_id 
   const [page, setPage] = useState(1)
   const [groupedView, setGroupedView] = useState(false)
   
+  // Update the button text to match the state
+  const adultContentButton = showAdultContent ? (
+    <>
+      <EyeOff className="w-4 h-4" />
+      <span>Hide Adult Content</span>
+    </>
+  ) : (
+    <>
+      <Eye className="w-4 h-4" />
+      <span>Show Adult Content</span>
+    </>
+  )
+
   // Memoize filtered results to prevent unnecessary recalculations
   const filteredResults = useMemo(() => 
     results.filter(result => 
       !failedImages.has(result.imageUrl) && 
-      (showAdultContent ? true : !result.adultContent)
+      (!result.adultContent || showAdultContent)
     ),
     [results, failedImages, showAdultContent]
   )
@@ -71,11 +97,12 @@ export function SearchResults({ results, isPremium, remainingCredits, search_id 
     return groups
   }, [filteredResults])
 
-  // Add display results memo
+  // Modify display results memo to return grouped arrays
   const displayResults = useMemo(() => {
-    if (!groupedView) return filteredResults
-    // In grouped view, only show one image per group
-    return Object.values(groupedResults).map(group => group[0])
+    if (!groupedView) return filteredResults.map(result => [result])
+    
+    // In grouped view, return arrays of similar images
+    return Object.values(groupedResults)
   }, [groupedView, filteredResults, groupedResults])
 
   const { ref, inView } = useInView({
@@ -83,13 +110,13 @@ export function SearchResults({ results, isPremium, remainingCredits, search_id 
     rootMargin: "200px",
   })
 
-  // Initialize results
+  // Initialize results whenever filtered results change
   useEffect(() => {
     const initialResults = displayResults.slice(0, ITEMS_PER_PAGE)
     setDisplayedResults(initialResults)
     setHasMore(displayResults.length > ITEMS_PER_PAGE)
     setPage(1)
-  }, [displayResults])
+  }, [displayResults, showAdultContent])
 
   // Load more results when scrolling
   useEffect(() => {
@@ -135,6 +162,15 @@ export function SearchResults({ results, isPremium, remainingCredits, search_id 
     setFailedImages(prev => new Set(prev).add(imageUrl))
   }
 
+  // Add group colors memo
+  const groupColorMap = useMemo(() => {
+    const colorMap: { [key: number]: string } = {}
+    Object.keys(groupedResults).forEach((group, index) => {
+      colorMap[Number(group)] = GROUP_COLORS[index % GROUP_COLORS.length]
+    })
+    return colorMap
+  }, [groupedResults])
+
   return (
     <div className="space-y-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:justify-between">
@@ -151,18 +187,7 @@ export function SearchResults({ results, isPremium, remainingCredits, search_id 
             onClick={() => setShowAdultContent(!showAdultContent)}
             className="flex items-center gap-2"
           >
-            {showAdultContent ? (
-              <>
-                
-                <Eye className="w-4 h-4" />
-                <span>Show Adult Content</span>
-              </>
-            ) : (
-              <>
-                <EyeOff className="w-4 h-4" />
-                <span>Hide Adult Content</span>
-              </>
-            )}
+            {adultContentButton}
           </Button>
 
           {/* Add grouping toggle button */}
@@ -185,15 +210,49 @@ export function SearchResults({ results, isPremium, remainingCredits, search_id 
         </p>
       </div>
 
-      {/* Results grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
-        {displayedResults.map((result, index) => (
+      {/* Modified Results grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {!groupedView ? (
+          // Regular grid view for all images
+          displayResults.flat().map((result, index) => (
+            <motion.div
+              key={`${result.imageUrl}-${index}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              className="transform-gpu w-full"
+            >
+              <ResultCard
+                result={result}
+                isPremium={isPremium}
+                isSelected={selectedImages.has(result.imageUrl)}
+                onSelect={handleSelect}
+                onError={handleImageError}
+                groupColor={groupedView ? groupColorMap[result.group] : undefined}
+              />
+            </motion.div>
+          ))
+        ) : (
+          // Grouped view with sections
+          displayResults.map((group, groupIndex) => (
           <motion.div
-            key={`${result.imageUrl}-${index}`}
+            key={`group-${groupIndex}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
-            className="transform-gpu w-full max-w-sm"
+              className="col-span-full"
+          >
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-8">
+              {group.map((result, index) => (
+                <motion.div
+                  key={`${result.imageUrl}-${index}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ 
+                    duration: 0.3,
+                    delay: index * 0.1 
+                  }}
+                  className="transform-gpu w-full"
           >
             <ResultCard
               result={result}
@@ -201,10 +260,20 @@ export function SearchResults({ results, isPremium, remainingCredits, search_id 
               isSelected={selectedImages.has(result.imageUrl)}
               onSelect={handleSelect}
               onError={handleImageError}
-              groupCount={groupedView ? groupedResults[result.group].length : undefined}
+                    groupCount={index === 0 && group.length > 1 ? group.length : undefined}
+              groupColor={groupedView ? groupColorMap[result.group] : undefined}
             />
+                </motion.div>
+              ))}
+            </div>
+            
+              {/* Separator between groups */}
+              {groupIndex < displayResults.length - 1 && (
+                <div className="border-t border-border/40 mb-8" />
+            )}
           </motion.div>
-        ))}
+          ))
+        )}
       </div>
 
       {/* Loading indicator */}
@@ -229,23 +298,28 @@ export function SearchResults({ results, isPremium, remainingCredits, search_id 
   )
 }
 
-// Update ResultCard to show group count
+// Update ResultCard to show group indicator only on first item
 function ResultCard({ 
   result, 
   isPremium, 
   isSelected, 
   onSelect, 
   onError,
-  groupCount
+  groupCount,
+  groupColor
 }: ResultCardProps) {
   return (
     <Card 
       className={cn(
         "group relative overflow-hidden border-none shadow-sm hover:shadow-md transition-all duration-300 w-full",
-        isSelected && "border border-border/40"
+        isSelected && "border border-border/40",
+        groupColor // Apply group color if provided
       )}
     >
-      <div className="relative aspect-video bg-muted">
+      <div className={cn(
+        "relative aspect-video",
+        groupColor ? "bg-transparent" : "bg-muted"
+      )}>
         <Image
           src={result.imageUrl}
           alt="Search result"
@@ -292,15 +366,23 @@ function ResultCard({
           </span>
         </div>
 
-        {/* Add group count badge */}
+        {/* Modified group count badge */}
         {groupCount && groupCount > 1 && (
-          <div className="absolute top-3 right-3 bg-black/50 text-white px-2 py-1 rounded-md text-xs backdrop-blur-sm">
-            +{groupCount - 1} similar
+          <div className={cn(
+            "absolute top-3 right-3 px-2 py-1 rounded-md text-xs backdrop-blur-sm",
+            "bg-black/50 text-white",
+            "flex items-center gap-1.5"
+          )}>
+            <div className="w-2 h-2 rounded-full bg-white/80" />
+            <span>+{groupCount - 1} similar</span>
           </div>
         )}
       </div>
 
-      <div className="p-3 bg-white dark:bg-gray-900 border-t">
+      <div className={cn(
+        "p-3 border-t",
+        groupColor ? "bg-white/80 dark:bg-gray-900/80" : "bg-white dark:bg-gray-900"
+      )}>
         <a
           href={result.sourceUrl}
           target="_blank"
