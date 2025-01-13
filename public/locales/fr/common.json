@@ -1,0 +1,493 @@
+{
+  "upload": {
+    "title": "Télécharger une Image",
+    "subtitle": "Téléchargez une image pour commencer la recherche",
+    "dropzone": "Glissez et déposez l'image ici",
+    "or": "ou",
+    "browse": "Parcourir les fichiers",
+    "adultFilter": "Filtre de Contenu Adulte",
+    "imagePreview": "Aperçu de l'image",
+    "noImageSelected": "Aucune image sélectionnée",
+    "uploadImage": "Télécharger une image",
+    "dropzone": {
+      "title": "Déposez votre image ici",
+      "subtitle": "ou cliquez pour parcourir",
+      "supportedFormats": "Formats supportés : JPG, PNG, WEBP",
+      "maxSize": "Taille maximale : 10MB"
+    },
+    "camera": {
+      "open": "Ouvrir la caméra",
+      "take": "Prendre une photo",
+      "switch": "Changer de caméra",
+      "front": "Caméra frontale",
+      "back": "Caméra arrière",
+      "error": {
+        "notAvailable": "La caméra n'est pas disponible ou l'autorisation a été refusée",
+        "browserSupport": "Veuillez vous assurer d'utiliser un navigateur compatible et d'avoir accordé les autorisations de caméra",
+        "access": "Accès à la caméra refusé ou non disponible",
+        "generic": "Échec de l'accès à la caméra"
+      }
+    },
+    "filters": {
+      "adultFilter": "Filtre contenu adulte"
+    },
+    "errors": {
+      "invalidType": "Veuillez télécharger un fichier image",
+      "sizeLimit": "La taille de l'image doit être inférieure à 10MB",
+      "generic": "Une erreur s'est produite lors du téléchargement"
+    },
+    "newSearch": "Nouvelle recherche",
+    "selectedImage": "Image sélectionnée",
+    "previewPlaceholder": "Votre aperçu d'image apparaîtra ici",
+    "importFiles": "Importer des Fichiers",
+    "retry": "Réessayer",
+    "retryTooltip": "Essayer une nouvelle recherche"
+  },
+  "search": {
+    "button": "Rechercher",
+    "searching": "Recherche en cours...",
+    "results": "Résultats de la Recherche",
+    "noResults": {
+      "title": "Aucun résultat valide trouvé",
+      "message": "Essayez de télécharger une image différente ou d'ajuster vos critères de recherche"
+    },
+    "uploadPrompt": "Veuillez télécharger une image",
+    "startSearching": "pour commencer la recherche",
+    "found": "{{count}} correspondances trouvées",
+    "similarImages": "Images Similaires",
+    "viewAll": "Voir Tous les Résultats",
+    "back": "Retour",
+    "loading": "Chargement des résultats...",
+    "research": "Rechercher à nouveau",
+    "newSearch": "Nouvelle Recherche",
+    "results": {
+      "noResults": "Aucun résultat trouvé",
+      "uploadPrompt": "Veuillez télécharger une image",
+      "toStartSearching": "pour commencer la recherche",
+      "loadingMore": "Chargement de plus de résultats...",
+      "scrollToLoad": "Faites défiler pour charger plus",
+      "processing": "Traitement de l'image...",
+      "viewModes": {
+        "grid": "Vue en grille",
+        "list": "Vue en liste"
+      },
+      "imageGroup": {
+        "showMore": "Afficher {{count}} de plus",
+        "showLess": "Afficher moins",
+        "similar": "Images similaires"
+      },
+      "imageCard": {
+        "select": "Sélectionner",
+        "selected": "Sélectionné",
+        "sourceLink": "Source",
+        "viewLarger": "Voir l'image en plus grand"
+      },
+      "dialog": {
+        "groupView": "Vue de groupe",
+        "close": "Fermer"
+      },
+      "filters": {
+        "adultContent": "Filtre de contenu adulte"
+      },
+      "title": "Résultats de recherche"
+    }
+  },
+  "hero": {
+    "title": {
+      "main": "Avancée",
+      "subMain": "Reconnaissance Faciale",
+      "sub": "Simple et Sécurisée",
+      "scrollToUpload": "Défiler pour télécharger"
+    },
+    "description": "Téléchargez des images pour trouver instantanément des visages similaires grâce à notre technologie sécurisée de reconnaissance faciale. Résultats rapides avec une précision de et un chiffrement de bout en bout.",
+    "upload": {
+      "toggle": {
+        "left": "Télécharger",
+        "right": "Caméra"
+      }
+    },
+    "trust": {
+      "encryption": "Chiffrement de bout en bout",
+      "accuracy": "Précision de 99,9%"
+    },
+    "features": {
+      "title": "Fonctionnalités",
+      "description": "Découvrez ce qui nous rend différents"
+    },
+    "errors": {
+      "invalidType": "Veuillez télécharger un fichier image (JPG, PNG ou WEBP)",
+      "fileSize": "Veuillez télécharger une image inférieure à 10 Mo",
+      "readError": "Échec de la lecture du fichier image",
+      "captureError": "Échec de la capture d'image"
+    },
+    "getStarted": "Commencer Gratuitement",
+    "dashboard": "Aller au Tableau de Bord",
+    "stats": {
+      "users": "10000+ Utilisateurs satisfaits"
+    },
+    "watchDemo": "Voir la démo"
+  },
+  "features": {
+    "1": {
+      "title": "Reconnaissance Faciale Avancée",
+      "description": "Algorithmes d'IA de pointe capables d'identifier les visages à partir d'images ou de vidéos avec une précision exceptionnelle."
+    },
+    "2": {
+      "title": "Recherche Web Globale",
+      "description": "Recherche complète sur l'ensemble du web pour trouver les visages correspondants et leurs informations associées."
+    },
+    "3": {
+      "title": "Sécurisé et Fiable",
+      "description": "Mesures de sécurité de niveau entreprise pour protéger les données des utilisateurs et garantir des résultats de recherche fiables."
+    },
+    "4": {
+      "title": "Découverte de Contacts",
+      "description": "Système avancé de récupération des informations de contact pour trouver les adresses e-mail et les numéros de téléphone."
+    }
+  },
+  "about": {
+    "title": "Révolutionner la Technologie de Recherche Faciale",
+    "description": "Chez FaceSearch AI, nous combinons une technologie de pointe avec une protection inébranlable de la vie privée pour offrir la plateforme de reconnaissance faciale la plus précise et la plus sécurisée.",
+    "stats": {
+      "users": {
+        "value": "10000+",
+        "label": "Utilisateurs Actifs"
+      },
+      "security": {
+        "value": "99.9%",
+        "label": "Score de Sécurité"
+      },
+      "accuracy": {
+        "value": "95%",
+        "label": "Taux de Précision"
+      },
+      "rating": {
+        "value": "#1",
+        "label": "Plateforme Classée"
+      }
+    },
+    "features": {
+      "ai": {
+        "title": "Technologie IA Avancée",
+        "description": "Nos algorithmes de reconnaissance faciale de pointe offrent une précision et une vitesse inégalées dans l'identification et la correspondance des visages."
+      },
+      "privacy": {
+        "title": "Confidentialité Prioritaire",
+        "description": "Nous priorisons la confidentialité des utilisateurs avec un chiffrement de bout en bout et des protocoles de protection des données qui dépassent les normes de l'industrie."
+      },
+      "database": {
+        "title": "Base de Données Mondiale",
+        "description": "Accès à une base de données d'images vaste et constamment mise à jour tout en maintenant une conformité totale avec les réglementations sur la confidentialité."
+      },
+      "analysis": {
+        "title": "Analyse en Temps Réel",
+        "description": "Obtenez des résultats instantanés grâce à notre infrastructure haute performance, traitant des millions de comparaisons en millisecondes."
+      }
+    }
+  },
+  "pricing": {
+    "title": "Choisissez Votre Plan Parfait",
+    "description": "Sélectionnez le plan qui correspond le mieux à vos besoins, des utilisateurs individuels aux solutions d'entreprise.",
+    "toggle": {
+      "individual": "Individuel",
+      "business": "Entreprise"
+    },
+    "plans": {
+      "basic": {
+        "title": "Basique",
+        "description": "Parfait pour commencer"
+      },
+      "professional": {
+        "title": "Professionnel",
+        "description": "Idéal pour les professionnels individuels"
+      },
+      "premium": {
+        "title": "Premium",
+        "description": "Pour les utilisateurs avancés et les équipes"
+      },
+      "business": {
+        "title": "Business",
+        "description": "Pour les petites entreprises"
+      },
+      "enterprise": {
+        "title": "Entreprise",
+        "description": "Solutions personnalisées pour les grandes organisations"
+      }
+    },
+    "features": {
+      "basic": [
+        "Déverrouille la découverte des URLs de contenu",
+        "10 Crédits d'utilisation mensuelle",
+        "Accès aux fonctions de recherche de base"
+      ],
+      "premium": [
+        "Tout ce qui est inclus dans le plan Basic",
+        "50 Crédits d'utilisation mensuelle",
+        "Fonctionnalités de recherche avancées",
+        "Support prioritaire"
+      ],
+      "professional": [
+        "Tout ce qui est inclus dans le plan Premium",
+        "150 Crédits d'utilisation mensuelle",
+        "Accès API",
+        "Support prioritaire 24/7"
+      ],
+      "business": [
+        "Tout ce qui est inclus dans le plan Professional",
+        "500 Crédits d'utilisation mensuelle",
+        "Analyses avancées",
+        "Support d'intégration personnalisé"
+      ],
+      "enterprise": [
+        "Tout ce qui est inclus dans le plan Business",
+        "Crédits illimités",
+        "Fonctionnalités personnalisées",
+        "Gestionnaire de compte dédié"
+      ]
+    },
+    "period": "mois",
+    "badges": {
+      "mostPopular": "Plus Populaire",
+      "bestValue": "Meilleur Rapport Qualité-Prix"
+    },
+    "buttons": {
+      "signUp": "S'inscrire",
+      "getPremium": "Obtenir Premium",
+      "getProfessional": "Obtenir Professionnel",
+      "getBusiness": "Obtenir Business",
+      "contactUs": "Contactez-nous"
+    }
+  },
+  "testimonials": {
+    "title": "Ce Que Disent Nos Utilisateurs",
+    "subtitle": "Retours authentiques de nos utilisateurs estimés",
+    "reviews": [
+      {
+        "name": "Sarah Johnson",
+        "role": "Responsable Marketing Digital",
+        "comment": "Cette plateforme a révolutionné notre façon de trouver et de vérifier le contenu en ligne. La précision et la rapidité sont inégalées.",
+        "rating": 5
+      },
+      {
+        "name": "Michael Chen",
+        "role": "Créateur de Contenu",
+        "comment": "La technologie de reconnaissance faciale est incroyablement précise. C'est devenu un outil essentiel dans mon processus de vérification de contenu.",
+        "rating": 5
+      },
+      {
+        "name": "Emma Williams",
+        "role": "Analyste des Médias Sociaux",
+        "comment": "Service exceptionnel ! La capacité de vérifier rapidement les images nous a fait gagner d'innombrables heures de travail manuel.",
+        "rating": 5
+      }
+    ]
+  },
+  "navbar": {
+    "home": "Accueil",
+    "features": "Fonctionnalités",
+    "pricing": "Tarifs",
+    "about": "À Propos",
+    "contact": "Contact",
+    "signIn": "Connexion",
+    "signUp": "S'inscrire",
+    "dashboard": "Tableau de Bord",
+    "profile": "Profil",
+    "settings": "Paramètres",
+    "logout": "Déconnexion"
+  },
+  "footer": {
+    "company": {
+      "title": "Entreprise",
+      "about": "À Propos",
+      "careers": "Carrières",
+      "press": "Presse",
+      "contact": "Contact"
+    },
+    "product": {
+      "title": "Produit",
+      "features": "Fonctionnalités",
+      "pricing": "Tarifs",
+      "security": "Sécurité",
+      "api": "API"
+    },
+    "legal": {
+      "title": "Légal",
+      "privacy": "Politique de Confidentialité",
+      "terms": "Conditions d'Utilisation",
+      "cookies": "Politique des Cookies",
+      "compliance": "Conformité"
+    },
+    "support": {
+      "title": "Support",
+      "help": "Centre d'Aide",
+      "docs": "Documentation",
+      "status": "État du Système",
+      "contact": "Contacter le Support"
+    },
+    "copyright": "© 2024 FaceSearch AI. Tous droits réservés.",
+    "quickLinks": "Liens Rapides",
+    "download": {
+      "title": "Télécharger l'App"
+    },
+    "company": {
+      "description": "Révolutionner la technologie de reconnaissance faciale avec des solutions d'IA avancées pour un avenir plus connecté et sécurisé."
+    },
+    "support": {
+      "telegram": "Bot Face Search AI"
+    },
+    "support": {
+      "title": "Support"
+    },
+    "company": {
+      "about": "À Propos",
+      "contact": "Contactez-nous"
+    },
+    "support": {
+      "contact": "Support Face Search AI"
+    }
+  },
+  "nav": {
+    "home": "Accueil",
+    "search": "Rechercher",
+    "dashboard": "Tableau de Bord",
+    "history": "Historique",
+    "profile": "Profil",
+    "feedback": "Retour",
+    "contact": "Contact",
+    "about": "À propos"
+  },
+  "mobileMenu": {
+    "menu": "Menu",
+    "theme": "Thème",
+    "language": "Langue",
+    "signIn": "Connexion",
+    "logout": "Déconnexion",
+    "searchImages": "Rechercher des Images",
+    "giveFeedback": "Donner un Avis"
+  },
+  "dropZone": {
+    "title": "Déposez votre image ici",
+    "browse": "ou cliquez pour parcourir",
+    "supports": "Formats: JPG, PNG, GIF",
+    "maxSize": "Taille max: 5MB",
+    "release": "Relâchez pour télécharger"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "browse": "Parcourir",
+    "searching": "Recherche en cours...",
+    "research": "Rechercher"
+  },
+  "dropzone": {
+    "clickToUpload": "Cliquez pour télécharger",
+    "dragAndDrop": "ou glissez-déposez",
+    "fileTypes": "SVG, PNG, JPG ou GIF (MAX. 800x400px)",
+    "uploadIcon": "Icône de téléchargement"
+  },
+  "dialog": {
+    "logout": {
+      "title": "Confirmer la Déconnexion",
+      "message": "Êtes-vous sûr de vouloir vous déconnecter ?",
+      "cancel": "Annuler",
+      "confirm": "Déconnexion"
+    }
+  },
+  "dashboard": {
+    "welcome": "Bon retour, {{name}} !",
+    "overview": "Voici un aperçu de votre compte et de votre activité",
+    "stats": {
+      "searches": {
+        "title": "Recherches Totales"
+      },
+      "credits": {
+        "title": "Crédits Restants",
+        "subtext": "{{used}} utilisés sur {{total}} au total"
+      },
+      "subscription": {
+        "title": "Abonnement",
+        "premium": "Premium",
+        "free": "Gratuit"
+      },
+      "account": {
+        "title": "État du Compte",
+        "active": "Actif",
+        "inactive": "Inactif"
+      }
+    },
+    "header": {
+      "upgrade_message": "Prêt à améliorer vos recherches ? Passez à Pro !",
+      "view_plans": "Voir les Plans"
+    }
+  },
+  "usage": {
+    "title": "Aperçu d'Utilisation",
+    "credits": "Crédits",
+    "searches": "Recherches",
+    "credits_usage": "Utilisation des Crédits",
+    "used": "Utilisé: {{count}}",
+    "total": "Total: {{count}}",
+    "available_credits": "Crédits Disponibles",
+    "total_searches": "Recherches Totales"
+  },
+  "profile": {
+    "no_data": "Aucune donnée de profil trouvée",
+    "verified": "Vérifié",
+    "stats": {
+      "subscription": {
+        "title": "État de l'Abonnement",
+        "premium": "Premium",
+        "free": "Gratuit",
+        "plan": "Plan : {{plan}}",
+        "no_plan": "Aucun Plan",
+        "status": "État : {{status}}"
+      },
+      "expiry": {
+        "title": "Expiration de l'Abonnement",
+        "na": "N/D"
+      },
+      "credits": {
+        "title": "Crédits",
+        "used": "Utilisés : {{used}}",
+        "total": "Total : {{total}}"
+      },
+      "searches": {
+        "title": "Recherches Totales",
+        "lifetime": "Recherches effectuées au total"
+      }
+    }
+  },
+  "auth": {
+    "signIn": {
+      "title": "Bon Retour",
+      "subtitle": "Connectez-vous à votre compte",
+      "continueWithGoogle": "Continuer avec Google",
+      "orContinueWith": "Ou continuer avec",
+      "signingIn": "Connexion en cours...",
+      "signIn": "Se connecter",
+      "noAccount": "Vous n'avez pas de compte ?",
+      "signUp": "S'inscrire",
+      "email": "Email",
+      "emailPlaceholder": "Entrez votre email",
+      "password": "Mot de passe",
+      "passwordPlaceholder": "Entrez votre mot de passe"
+    },
+    "signUp": {
+      "title": "Créer un Compte",
+      "subtitle": "Rejoignez notre communauté aujourd'hui",
+      "continueWithGoogle": "Continuer avec Google",
+      "orContinueWith": "Ou continuer avec",
+      "fullName": "Nom Complet",
+      "fullNamePlaceholder": "Entrez votre nom complet",
+      "email": "Email",
+      "emailPlaceholder": "Entrez votre email",
+      "password": "Mot de passe",
+      "passwordPlaceholder": "Créez un mot de passe",
+      "showPassword": "Afficher le mot de passe",
+      "hidePassword": "Masquer le mot de passe",
+      "creatingAccount": "Création du compte...",
+      "createAccount": "Créer un Compte",
+      "haveAccount": "Vous avez déjà un compte ?",
+      "signIn": "Se connecter"
+    }
+  }
+} 

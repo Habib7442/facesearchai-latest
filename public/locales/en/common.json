@@ -1,0 +1,499 @@
+{
+  "upload": {
+    "title": "Upload Image",
+    "subtitle": "Upload an image to start searching",
+    "dropzone": "Drag and drop image here",
+    "or": "or",
+    "browse": "Browse files",
+    "adultFilter": "Adult Content Filter",
+    "imagePreview": "Image Preview",
+    "noImageSelected": "No image selected",
+    "uploadImage": "Upload Image",
+    "dropzone": {
+      "title": "Drop your image here",
+      "subtitle": "or click to browse",
+      "supportedFormats": "Supports: JPG, PNG, WEBP",
+      "maxSize": "Max file size: 10MB"
+    },
+    "camera": {
+      "open": "Open Camera",
+      "take": "Take Photo",
+      "switch": "Switch Camera",
+      "front": "Front Camera",
+      "back": "Back Camera",
+      "error": {
+        "notAvailable": "Camera is not available or permission was denied",
+        "browserSupport": "Please ensure you're using a supported browser and have granted camera permissions",
+        "access": "Camera access denied or not available",
+        "generic": "Failed to access camera"
+      }
+    },
+    "filters": {
+      "adultFilter": "Adult Filter"
+    },
+    "errors": {
+      "invalidType": "Please upload an image file",
+      "sizeLimit": "Image size should be less than 10MB",
+      "generic": "An error occurred while uploading"
+    },
+    "newSearch": "New Search",
+    "selectedImage": "Selected image",
+    "previewPlaceholder": "Your image preview will appear here",
+    "importFiles": "Import Files",
+    "retry": "Retry Search",
+    "retryTooltip": "Try another search"
+  },
+  "search": {
+    "button": "Search",
+    "searching": "Searching...",
+    "results": "Search Results",
+    "noResults": "No results found",
+    "uploadPrompt": "Please upload an image",
+    "startSearching": "to start searching",
+    "found": "Found {{count}} matches",
+    "similarImages": "Similar Images",
+    "viewAll": "View All Results",
+    "back": "Back",
+    "loading": "Loading more results...",
+    "research": "Research",
+    "newSearch": "New Search",
+    "results": {
+      "noResults": "No results found",
+      "uploadPrompt": "Please upload an image",
+      "toStartSearching": "to start searching",
+      "loadingMore": "Loading more results...",
+      "scrollToLoad": "Scroll to load more",
+      "processing": "Processing image...",
+      "viewModes": {
+        "grid": "Grid view",
+        "list": "List view"
+      },
+      "imageGroup": {
+        "showMore": "Show {{count}} more",
+        "showLess": "Show less",
+        "similar": "Similar images"
+      },
+      "imageCard": {
+        "select": "Select",
+        "selected": "Selected",
+        "sourceLink": "Source",
+        "viewLarger": "View larger image"
+      },
+      "dialog": {
+        "groupView": "Group View",
+        "close": "Close"
+      },
+      "filters": {
+        "adultContent": "Adult Content Filter"
+      },
+      "title": "Search Results"
+    },
+    "noResults": {
+      "title": "No valid results found",
+      "message": "Try uploading a different image or adjusting your search criteria"
+    }
+  },
+  "errors": {
+    "imageRequired": "Please upload an image first",
+    "invalidType": "Please upload an image file",
+    "sizeLimit": "Image size should be less than 10MB",
+    "searchFailed": "Search failed",
+    "noFaces": "No faces detected. Please try another image with a clearer face."
+  },
+  "hero": {
+    "title": {
+      "main": "Advanced",
+      "subMain": "Facial Recognition",
+      "sub": "Simple and Secure",
+      "scrollToUpload": "Scroll to Upload"
+    },
+    "description": "Find lookalikes instantly with AI-powered facial recognition. Safe, secure, and accurate matching technology.",
+    "upload": {
+      "toggle": {
+        "left": "Upload",
+        "right": "Camera"
+      }
+    },
+    "trust": {
+      "encryption": "End-to-end encrypted",
+      "accuracy": "99.9% accuracy"
+    },
+    "features": {
+      "title": "Features",
+      "description": "Discover what makes us different"
+    },
+    "errors": {
+      "invalidType": "Please upload an image file (JPG, PNG, or WEBP)",
+      "fileSize": "Please upload an image smaller than 10MB",
+      "readError": "Failed to read the image file",
+      "captureError": "Failed to capture image"
+    },
+    "getStarted": "Get Started for Free",
+    "dashboard": "Dashboard",
+    "stats": {
+      "users": "10000+ Happy users"
+    },
+    "watchDemo": "Watch Demo"
+  },
+  "features": {
+    "1": {
+      "title": "Advanced Face Recognition",
+      "description": "State-of-the-art AI algorithms that can identify faces from images or videos with exceptional accuracy."
+    },
+    "2": {
+      "title": "Web-Wide Search",
+      "description": "Comprehensive search across the entire web to find matching faces and their associated information."
+    },
+    "3": {
+      "title": "Secure & Reliable",
+      "description": "Enterprise-grade security measures to protect user data and ensure reliable search results."
+    },
+    "4": {
+      "title": "Contact Discovery",
+      "description": "Advanced contact information retrieval system to find email addresses and phone numbers."
+    }
+  },
+  "about": {
+    "title": "Revolutionizing Face Search Technology",
+    "description": "At FaceSearch AI, we combine cutting-edge technology with unwavering privacy protection to deliver the most accurate and secure facial recognition platform.",
+    "stats": {
+      "users": {
+        "value": "10000+",
+        "label": "Active Users"
+      },
+      "security": {
+        "value": "99.9%",
+        "label": "Security Score"
+      },
+      "accuracy": {
+        "value": "95%",
+        "label": "Accuracy Rate"
+      },
+      "rating": {
+        "value": "#1",
+        "label": "Rated Platform"
+      }
+    },
+    "features": {
+      "ai": {
+        "title": "Advanced AI Technology",
+        "description": "Our cutting-edge facial recognition algorithms provide unmatched accuracy and speed in identifying and matching faces."
+      },
+      "privacy": {
+        "title": "Privacy First",
+        "description": "We prioritize user privacy with end-to-end encryption and strict data protection protocols that exceed industry standards."
+      },
+      "database": {
+        "title": "Global Database",
+        "description": "Access to an extensive, constantly updated database of images while maintaining complete compliance with privacy regulations."
+      },
+      "analysis": {
+        "title": "Real-Time Analysis",
+        "description": "Get instant results with our high-performance infrastructure, processing millions of comparisons in milliseconds."
+      }
+    }
+  },
+  "pricing": {
+    "title": "Choose Your Perfect Plan",
+    "description": "Select the plan that best fits your needs, from individual users to enterprise solutions.",
+    "toggle": {
+      "individual": "Individual",
+      "business": "Business"
+    },
+    "plans": {
+      "basic": {
+        "title": "Basic",
+        "description": "Perfect for getting started"
+      },
+      "premium": {
+        "title": "Premium",
+        "description": "Best for individual professionals"
+      },
+      "professional": {
+        "title": "Professional",
+        "description": "For power users and teams"
+      },
+      "business": {
+        "title": "Business",
+        "description": "For small businesses"
+      },
+      "enterprise": {
+        "title": "Enterprise",
+        "description": "Custom solutions for large organizations"
+      }
+    },
+    "features": {
+      "basic": [
+        "Unlocks Discovering URLs of Content",
+        "10 Credits for Monthly Use",
+        "Access to Basic Search Functions"
+      ],
+      "premium": [
+        "Everything in Basic Plan",
+        "50 Credits for Monthly Use",
+        "Advanced Search Features",
+        "Priority Support"
+      ],
+      "professional": [
+        "Everything in Premium Plan",
+        "150 Credits for Monthly Use",
+        "API Access",
+        "24/7 Priority Support"
+      ],
+      "business": [
+        "Everything in Professional Plan",
+        "500 Credits for Monthly Use",
+        "Advanced Analytics",
+        "Custom Integration Support"
+      ],
+      "enterprise": [
+        "Everything in Business Plan",
+        "Unlimited Credits",
+        "Custom Features",
+        "Dedicated Account Manager"
+      ]
+    },
+    "period": "month",
+    "badges": {
+      "mostPopular": "Most Popular",
+      "bestValue": "Best Value"
+    },
+    "buttons": {
+      "signUp": "Sign Up",
+      "getPremium": "Get Premium",
+      "getProfessional": "Get Professional",
+      "getBusiness": "Get Business",
+      "contactUs": "Contact Us"
+    }
+  },
+  "testimonials": {
+    "title": "What Our Users Say",
+    "subtitle": "Real feedback from our valued users",
+    "reviews": [
+      {
+        "name": "Sarah Johnson",
+        "role": "Digital Marketing Manager",
+        "comment": "This platform has revolutionized how we find and verify online content. The accuracy and speed are unmatched.",
+        "rating": 5
+      },
+      {
+        "name": "Michael Chen",
+        "role": "Content Creator",
+        "comment": "The facial recognition technology is incredibly accurate. It's become an essential tool in my content verification workflow.",
+        "rating": 5
+      },
+      {
+        "name": "Emma Williams",
+        "role": "Social Media Analyst",
+        "comment": "Outstanding service! The ability to quickly verify images has saved us countless hours of manual work.",
+        "rating": 5
+      }
+    ]
+  },
+  "navbar": {
+    "home": "Home",
+    "features": "Features",
+    "pricing": "Pricing",
+    "about": "About",
+    "contact": "Contact",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "footer": {
+    "company": {
+      "title": "Company",
+      "about": "About Us",
+      "careers": "Careers",
+      "press": "Press",
+      "contact": "Contact"
+    },
+    "product": {
+      "title": "Product",
+      "features": "Features",
+      "pricing": "Pricing",
+      "security": "Security",
+      "api": "API"
+    },
+    "legal": {
+      "title": "Legal",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "cookies": "Cookie Policy",
+      "compliance": "Compliance"
+    },
+    "support": {
+      "title": "Support",
+      "help": "Help Center",
+      "docs": "Documentation",
+      "status": "System Status",
+      "contact": "Contact Support"
+    },
+    "copyright": "© 2024 FaceSearch AI. All rights reserved.",
+    "quickLinks": "Quick Links",
+    "download": {
+      "title": "Download App"
+    },
+    "company": {
+      "description": "Revolutionizing face matching technology with advanced AI solutions for a more connected and secure future.",
+      "about": "About Us",
+      "contact": "Contact Us"
+    },
+    "support": {
+      "telegram": "Face Search AI Bot",
+      "title": "Support",
+      "contact": "Face Search AI Support"
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "search": "Search",
+    "feedback": "Feedback",
+    "about": "About",
+    "contact": "Contact",
+    "dashboard": "Dashboard",
+    "history": "History",
+    "profile": "Profile"
+  },
+  "mobileMenu": {
+    "menu": "Menu",
+    "theme": "Theme",
+    "language": "Language",
+    "signIn": "Sign In",
+    "logout": "Logout",
+    "searchImages": "Search Images",
+    "giveFeedback": "Give Feedback"
+  },
+  "dropZone": {
+    "title": "Drop your image here",
+    "browse": "or click to browse files",
+    "supports": "Supports: JPG, PNG, GIF",
+    "maxSize": "Max file size: 5MB",
+    "release": "Release to upload"
+  },
+  "common": {
+    "loading": "Loading...",
+    "browse": "Browse",
+    "searching": "Searching...",
+    "research": "Research"
+  },
+  "dropzone": {
+    "clickToUpload": "Click to upload",
+    "dragAndDrop": "or drag and drop",
+    "fileTypes": "SVG, PNG, JPG or GIF (MAX. 800x400px)",
+    "uploadIcon": "Upload icon"
+  },
+  "dialog": {
+    "logout": {
+      "title": "Confirm Logout",
+      "message": "Are you sure you want to logout?",
+      "cancel": "Cancel",
+      "confirm": "Logout"
+    }
+  },
+  "dashboard": {
+    "welcome": "Welcome, {{name}}",
+    "overview": "Here's an overview of your account",
+    "stats": {
+      "searches": "Total Searches",
+      "credits": "Available Credits",
+      "subscription": "Subscription Status",
+      "account": "Account Status"
+    },
+    "usage": {
+      "title": "Usage Overview",
+      "credits": "Credits Used",
+      "remaining": "Credits Remaining",
+      "searches": "Total Searches"
+    }
+  },
+  "usage": {
+    "title": "Usage Overview",
+    "credits": "Credits",
+    "searches": "Searches",
+    "credits_usage": "Credits Usage",
+    "used": "Used: {{count}}",
+    "total": "Total: {{count}}",
+    "available_credits": "Available Credits",
+    "total_searches": "Total Searches"
+  },
+  "profile": {
+    "no_data": "No profile data found",
+    "verified": "Verified",
+    "stats": {
+      "subscription": {
+        "title": "Subscription Status",
+        "premium": "Premium",
+        "free": "Free",
+        "plan": "Plan: {{plan}}",
+        "no_plan": "No Plan",
+        "status": "Status: {{status}}"
+      },
+      "expiry": {
+        "title": "Subscription Expiry",
+        "na": "N/A"
+      },
+      "credits": {
+        "title": "Credits",
+        "used": "Used: {{used}}",
+        "total": "Total: {{total}}"
+      },
+      "searches": {
+        "title": "Total Searches",
+        "lifetime": "Lifetime searches performed"
+      }
+    }
+  },
+  "auth": {
+    "signIn": {
+      "title": "Welcome Back",
+      "subtitle": "Sign in to your account",
+      "continueWithGoogle": "Continue with Google",
+      "orContinueWith": "Or continue with",
+      "signingIn": "Signing in...",
+      "signIn": "Sign in",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign up",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password"
+    },
+    "signUp": {
+      "title": "Create Account",
+      "subtitle": "Join our community today",
+      "continueWithGoogle": "Continue with Google",
+      "orContinueWith": "Or continue with",
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "Enter your full name",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "password": "Password", 
+      "passwordPlaceholder": "Create a password",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password",
+      "creatingAccount": "Creating account...",
+      "createAccount": "Create Account",
+      "haveAccount": "Already have an account?",
+      "signIn": "Sign in"
+    }
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "We'd love to hear from you",
+    "name": "Full Name",
+    "namePlaceholder": "Enter your full name",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email address",
+    "message": "Message",
+    "messagePlaceholder": "How can we help you?",
+    "sending": "Sending...",
+    "submit": "Send Message",
+    "successTitle": "Message Sent Successfully!",
+    "successMessage": "Thank you for reaching out. We'll get back to you as soon as possible.",
+    "successButton": "Close"
+  }
+}
